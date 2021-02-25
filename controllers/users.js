@@ -13,7 +13,7 @@ const usersGet = async (req = request, res = response) => {
         .skip(Number(desde))
         .limit(Number(limite))
 
-    ])
+    ]).catch(err=>console.log(err))
 
     const [total,usuarios] = resp; //desestructurar el resultado de la promesa
     res.json({
