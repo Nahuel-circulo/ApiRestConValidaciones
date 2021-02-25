@@ -7,26 +7,18 @@ const usersGet = async (req = request, res = response) => {
     const {limite = 5,desde=0} = req.query; //argumentos opcionales
     const query = {estado : true}
 
-    //promise.all ejecuta ambas promesas en simultaneo
-
- /*    const resp = await Promise.all([
+    const resp = await Promise.all([ //promise.all ejecuta ambas promesas en simultaneo
         User.countDocuments(query),
         User.find(query)
         .skip(Number(desde))
         .limit(Number(limite))
 
-    ]); */
-    const users = await 
-        User.find(query)
-        .skip(Number(desde))
-        .limit(Number(limite));
+    ]);
 
-
-    /* const [total,usuarios] = resp; */ //desestructurar el resultado de la promesa
+    const [total,usuarios] = resp; //desestructurar el resultado de la promesa
     res.json({
-       /*  total,
-        usuarios */
-        users
+        total,
+        usuarios
     });
 };
 
