@@ -9,18 +9,24 @@ const usersGet = async (req = request, res = response) => {
 
     //promise.all ejecuta ambas promesas en simultaneo
 
-    const resp = await Promise.all([
+ /*    const resp = await Promise.all([
         User.countDocuments(query),
         User.find(query)
         .skip(Number(desde))
         .limit(Number(limite))
 
-    ]);
+    ]); */
+    const users = await 
+        User.find(query)
+        .skip(Number(desde))
+        .limit(Number(limite));
 
-    const [total,usuarios] = resp; //desestructurar el resultado de la promesa
+
+    /* const [total,usuarios] = resp; */ //desestructurar el resultado de la promesa
     res.json({
-        total,
-        usuarios
+       /*  total,
+        usuarios */
+        users
     });
 };
 
