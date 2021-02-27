@@ -33,7 +33,8 @@ const UserSchema = new Schema({
 });
 
 UserSchema.methods.toJSON = function(){
-    const  {__v,password, ...user } = this.toObject(); // desestructura el objeto 
+    const  {__v,password,_id, ...user } = this.toObject(); // desestructura el objeto 
+    user.uid = _id;
     return user; // retorna user sin password y version
 }
 
