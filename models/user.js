@@ -1,42 +1,41 @@
-
-const {Schema,model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const UserSchema = new Schema({
-    nombre:{
-        type:String,
-        required:[true,'El nombre es obligatorio']
-    },
-    correo:{
+    nombre: {
         type: String,
-        required: [true,'El correo es obligatorio'],
-        unique: true
+        required: [true, "El nombre es obligatorio"],
     },
-    password:{
+    correo: {
         type: String,
-        required:[true,"La contraseña es obligatoria"],
+        required: [true, "El correo es obligatorio"],
+        unique: true,
     },
-    img:{
-        type: String
-    },
-    rol:{
+    password: {
         type: String,
-        required:true,
+        required: [true, "La contraseña es obligatoria"],
     },
-    estado:{
+    img: {
+        type: String,
+    },
+    rol: {
+        type: String,
+        default:'USER_ROLE',
+        required: true,
+    },
+    estado: {
         type: Boolean,
-        default: true
+        default: true,
     },
-    google:{
+    google: {
         type: Boolean,
-        default:false
+        default: false,
     },
 });
 
-UserSchema.methods.toJSON = function(){
-    const  {__v,password,_id, ...user } = this.toObject(); // desestructura el objeto 
+UserSchema.methods.toJSON = function () {
+    const { __v, password, _id, ...user } = this.toObject(); // desestructura el objeto
     user.uid = _id;
     return user; // retorna user sin password y version
-}
+};
 
-
-module.exports = model('User',UserSchema);
+module.exports = model("User", UserSchema);

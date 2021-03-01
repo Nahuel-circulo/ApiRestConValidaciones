@@ -19,7 +19,7 @@ class Server {
         this.routes();
     }
 
-    async conectarDB(){
+    async conectarDB() {
         await dbConnection();
     }
 
